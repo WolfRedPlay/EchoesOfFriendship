@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     PlayerState _currentState;
     IdleState _idleState = new IdleState();
     WalkingState _walkingState = new WalkingState();
+    JumpingState _jumpingState = new JumpingState();
 
 
     public PlayerInputHandler Input => _input;
@@ -19,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public IdleState Idle => _idleState;
     public WalkingState Walking => _walkingState;
+    public JumpingState Jumping => _jumpingState;
 
     void Start()
     {

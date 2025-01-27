@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 6683453793570140636}
   - component: {fileID: 839621552815447224}
   - component: {fileID: 5648223835953540966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -407,6 +407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 5
+  _gravity: 9
+  _jumpHeight: 0.3
 --- !u!114 &5648223835953540966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,7 +780,7 @@ GameObject:
   - component: {fileID: 2831099378604747471}
   - component: {fileID: 8532192533215422087}
   - component: {fileID: 4474694914798214287}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -830,7 +832,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.5
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -859,7 +861,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6870330852451860974}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &8532192533215422087
 MonoBehaviour:
   m_ObjectHideFlags: 0
