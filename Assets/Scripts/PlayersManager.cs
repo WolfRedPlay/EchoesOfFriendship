@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,6 +36,13 @@ public class PlayersManager : MonoBehaviour
         if(arg0.name!= "Menu")
         {
             List<PlayerInput>players = FindObjectsOfType<PlayerInput>().ToList();
+
+            if (players[1].GetComponentInChildren<CinemachineFreeLook>().gameObject.layer == LayerMask.NameToLayer("Player1"))
+            {
+                PlayerInput playerInput = players[0];
+                players[0] = players[1];
+                players[1] = playerInput;
+            }
 
             AssignDeviceToPlayer(players[0], _controlSchemeForPlayer1, _deviceForPlayer1);
             AssignDeviceToPlayer(players[1], _controlSchemeForPlayer2, _deviceForPlayer2);

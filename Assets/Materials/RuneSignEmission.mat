@@ -60,7 +60,7 @@ Material:
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _EmissionIntencity: 174
+    - _EmissionIntencity: 47
     m_Colors:
     - _EmissiveColor: {r: 1, g: 0.34663644, b: 0, a: 1}
   m_BuildTextureStacks: []

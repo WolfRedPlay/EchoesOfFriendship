@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(PlayerInput))]
 public class DeviceIconController : MonoBehaviour
@@ -36,7 +32,6 @@ public class DeviceIconController : MonoBehaviour
     {
         if (_menuController == null)
         {
-            Debug.LogError("Menu controller is not assigned!!!");
             return;
         }
         if (!_isActive) return; 

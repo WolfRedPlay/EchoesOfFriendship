@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerStateManager : MonoBehaviour
 {
+    [SerializeField] Animator _animator;
+
+
     PlayerInputHandler _input;
     PlayerMovement _movement;
 
@@ -15,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     JumpingState _jumpingState = new JumpingState();
 
 
+    public Animator Animator => _animator;
     public PlayerInputHandler Input => _input;
     public PlayerMovement Movement => _movement;
 
@@ -27,7 +31,7 @@ public class PlayerStateManager : MonoBehaviour
         _input = GetComponent<PlayerInputHandler>();
         _movement = GetComponent<PlayerMovement>();
 
-
+        Cursor.visible = false;
         SwitchState(_idleState);
     }
 

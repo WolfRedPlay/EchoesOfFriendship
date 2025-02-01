@@ -26,5 +26,8 @@ public class IdleState : PlayerState
         }
 
         manager.Movement.Move(Vector2.zero);
+        manager.Animator.SetFloat("X", 0);
+        manager.Animator.SetFloat("Y", 0);
+
     }
 }

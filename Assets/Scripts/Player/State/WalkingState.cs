@@ -25,6 +25,8 @@ public class WalkingState : PlayerState
         }
 
         manager.Movement.Move(manager.Input.Move);
+        manager.Animator.SetFloat("X", manager.Input.Move.x);
+        manager.Animator.SetFloat("Y", manager.Input.Move.y);
         manager.Movement.RotateToCameraForward();
     }
 }

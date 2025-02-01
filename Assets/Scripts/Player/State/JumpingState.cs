@@ -8,6 +8,7 @@ public class JumpingState : PlayerState
     {
         manager.Movement.ApplyJump();
         manager.Movement.Move(manager.Input.Move);
+        manager.Animator.SetBool("Jump", true);
     }
 
     public override void UpdateState(PlayerStateManager manager)
@@ -17,6 +18,7 @@ public class JumpingState : PlayerState
 
         if (manager.Movement.IsGrounded)
         {
+            manager.Animator.SetBool("Jump", false);
             if (manager.Input.Move == Vector2.zero)
             {
                 manager.SwitchState(manager.Idle);
