@@ -8,6 +8,11 @@ public class TerminalActivator : MonoBehaviour
     [SerializeField] Terminal2Manager _terminal2;
 
     bool _isStarted = false;
+
+    private void Start()
+    {
+    }
+
     void Update()
     {
         if (!_isStarted)

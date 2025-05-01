@@ -25,6 +25,7 @@ public class SelectDeviceMenuController : MonoBehaviour
 
 
     MenuController _menuController;
+    AudioSource _audioSource;
 
     int _devicesAmount = 0;
 
@@ -88,7 +89,7 @@ public class SelectDeviceMenuController : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
 #endif
         }
-
+        _audioSource = GetComponent<AudioSource>();
         _devicesAmount = InputSystem.devices.Count;
         foreach (var device in InputSystem.devices)
         {
@@ -144,6 +145,7 @@ public class SelectDeviceMenuController : MonoBehaviour
         if (icon.Position == 2 && _isPlayer2Finished) icon.Position = 1;
 
         icon.gameObject.transform.SetParent(_areas[icon.Position].transform);
+        _audioSource.Play();
     }
 
     public void ClearArea(DeviceIconController icon, int areaIndex)

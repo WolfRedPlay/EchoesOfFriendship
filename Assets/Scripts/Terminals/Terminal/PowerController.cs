@@ -11,7 +11,7 @@ public class PowerController : MonoBehaviour
     [SerializeField] float _leftmostXPosition = 1f;
 
 
-
+    AudioSource _audioSource;
     InputAction _action;
     const float MinScale = 0f;
     const float MaxScale = 1f;
@@ -23,6 +23,7 @@ public class PowerController : MonoBehaviour
     public void SetActive(bool active) 
     { 
         _isActive = active;
+        if (!active) _audioSource.Stop();
         _value = 0f;
         UpdateTransform();
     }
@@ -35,6 +36,7 @@ public class PowerController : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -42,6 +44,16 @@ public class PowerController : MonoBehaviour
         if (_isActive)
         {
             float input = _action.ReadValue<float>();
+
+            if (Mathf.Abs(input) != 0)
+            {
+                if (!_audioSource.isPlaying) _audioSource.Play();
+
+            }
+            else
+            {
+                if (_audioSource.isPlaying) _audioSource.Stop();
+            }
 
             CalculateValue(input);
             UpdateTransform();

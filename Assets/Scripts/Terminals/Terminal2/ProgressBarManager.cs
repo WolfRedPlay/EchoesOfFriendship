@@ -16,6 +16,7 @@ public class ProgressBarManager : MonoBehaviour
     DecalProjector _currentSignDecal;
     float _value = 0f;
 
+    AudioSource _audioSource;
 
     const float MinScale = 0f;
     const float MaxScale = 1f;
@@ -25,6 +26,7 @@ public class ProgressBarManager : MonoBehaviour
     public void SetActive(bool active) 
     {  
         _isActive = active;
+        if (!active) _audioSource.Stop();
         _value = 0f;
         UpdateTransform();
     }
@@ -39,6 +41,8 @@ public class ProgressBarManager : MonoBehaviour
             this.enabled = false;
             return;
         }
+
+        _audioSource = GetComponent<AudioSource>();
 
         _currentSignDecal = runeSpaceController.Decal;
 
@@ -68,10 +72,13 @@ public class ProgressBarManager : MonoBehaviour
         {
             if (CheckRune())
             {
+                if (!_audioSource.isPlaying) _audioSource.Play();
                 _value += _speed * Time.deltaTime;
             }
             else
             {
+                if (_audioSource.isPlaying) _audioSource.Stop();
+
                 _value -= _speed * Time.deltaTime;
             }
 
@@ -112,6 +119,7 @@ public class ProgressBarManager : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Lerp(MinScale, MaxScale, _value);
+
         transform.localScale = scale;
 
         transform.localPosition = new Vector3(_leftmostXPosition - (_leftmostXPosition * transform.localScale.x), transform.localPosition.y, transform.localPosition.z);

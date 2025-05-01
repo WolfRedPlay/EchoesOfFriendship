@@ -6,6 +6,8 @@ public class CircleController : MonoBehaviour
     [SerializeField] PlayerInput _input;
     [SerializeField] float _rotateSpeed = 5f;
 
+
+    AudioSource _source;
     InputAction _action;
     PowerController _powerController;
     bool _isActive = false;
@@ -15,6 +17,7 @@ public class CircleController : MonoBehaviour
     public void SetActive(bool active) 
     { 
         _isActive = active;
+        if (_isActive) _source.Stop();
         transform.localRotation = _startRotation;
     }
     public void SetPlayerInput(PlayerInput playerInput)
@@ -33,6 +36,8 @@ public class CircleController : MonoBehaviour
             return;
         }
 
+        _source = GetComponent<AudioSource>();
+
         _startRotation = transform.localRotation;
     }
 
@@ -41,6 +46,16 @@ public class CircleController : MonoBehaviour
         if (_isActive)
         {
             float rotation = CalculateRotation();
+            Debug.Log(rotation);
+
+            if (Mathf.Abs(rotation) > 0)
+            {
+                if (!_source.isPlaying)_source.Play();
+            }
+            else
+            {
+                if(_source.isPlaying) _source.Stop();
+            }
 
             transform.Rotate(0, 0, rotation * Time.deltaTime, Space.Self);
         }

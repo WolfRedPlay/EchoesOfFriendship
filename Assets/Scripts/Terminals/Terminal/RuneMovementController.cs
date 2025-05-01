@@ -8,7 +8,7 @@ public class RuneMovementController : MonoBehaviour
     [SerializeField] float _defaultSpeed = 0.5f;
 
     PowerController _power;
-
+    AudioSource _source;
 
     float _leftBorder;
     float _rightBorder;
@@ -32,6 +32,8 @@ public class RuneMovementController : MonoBehaviour
             enabled = false;
             return;
         }
+
+        _source = GetComponent<AudioSource>();
     }
 
     public void SetActive(bool active)
@@ -46,6 +48,7 @@ public class RuneMovementController : MonoBehaviour
         else
         {
             StopAllCoroutines();
+            _source.Stop();
             transform.position = new Vector3(_leftBorder, transform.position.y, transform.position.z);
         }
     }
@@ -104,6 +107,7 @@ public class RuneMovementController : MonoBehaviour
 
     IEnumerator MoveToNextPosition()
     {
+        _source.Play();
         Vector3 targetPosition = new Vector3(_nextPosition, transform.position.y, transform.position.z);
 
         while (Vector3.Distance(transform.position, targetPosition) > PositionThreshold)
@@ -114,6 +118,7 @@ public class RuneMovementController : MonoBehaviour
         }
 
         transform.position = targetPosition;
+        _source.Stop();
 
         _nextPosition = GetNextPosition();
     }

@@ -11,6 +11,7 @@ public class PlayerStateManager : MonoBehaviour
 
     PlayerInputHandler _input;
     PlayerMovement _movement;
+    SoundController _soundController;
 
     PlayerState _currentState;
     IdleState _idleState = new IdleState();
@@ -21,6 +22,7 @@ public class PlayerStateManager : MonoBehaviour
     public Animator Animator => _animator;
     public PlayerInputHandler Input => _input;
     public PlayerMovement Movement => _movement;
+    public SoundController Sound => _soundController;
 
     public IdleState Idle => _idleState;
     public WalkingState Walking => _walkingState;
@@ -30,6 +32,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         _input = GetComponent<PlayerInputHandler>();
         _movement = GetComponent<PlayerMovement>();
+        _soundController = GetComponent<SoundController>();
 
         Cursor.visible = false;
         SwitchState(_idleState);

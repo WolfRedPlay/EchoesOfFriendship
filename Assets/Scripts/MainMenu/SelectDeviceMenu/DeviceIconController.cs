@@ -15,12 +15,21 @@ public class DeviceIconController : MonoBehaviour
 
     SelectDeviceMenuController _menuController;
 
+    AudioSource _audioSource;
+
     public int Position {
         set { _position = value; }  
         get { return _position; } 
     }
 
+
+
     public void SetMenuController(SelectDeviceMenuController menuController) { _menuController = menuController; }
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void SetUsingDevice(string newScheme, InputDevice newDevice)
     {
@@ -61,6 +70,7 @@ public class DeviceIconController : MonoBehaviour
                 _menuController.IsPlayer1Finished = true;
                 _menuController.SetDeviceForPlayer(1, _controlScheme, _device);
                 _chosenPlayer = 1;
+                _audioSource.Play();
                 
             break;
 
@@ -70,7 +80,8 @@ public class DeviceIconController : MonoBehaviour
                 _menuController.IsPlayer2Finished = true;
                 _menuController.SetDeviceForPlayer(2, _controlScheme, _device);
                 _chosenPlayer = 2;
-            break;
+                _audioSource.Play();
+                break;
         }
         _menuController.ClearArea(this, _position);
 

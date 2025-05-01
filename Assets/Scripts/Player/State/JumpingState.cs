@@ -9,6 +9,7 @@ public class JumpingState : PlayerState
         manager.Movement.ApplyJump();
         manager.Movement.Move(manager.Input.Move);
         manager.Animator.SetBool("Jump", true);
+        manager.Sound.PlayJumpStart();
     }
 
     public override void UpdateState(PlayerStateManager manager)
@@ -18,6 +19,7 @@ public class JumpingState : PlayerState
 
         if (manager.Movement.IsGrounded)
         {
+            manager.Sound.PlayJumpFinish();
             manager.Animator.SetBool("Jump", false);
             if (manager.Input.Move == Vector2.zero)
             {

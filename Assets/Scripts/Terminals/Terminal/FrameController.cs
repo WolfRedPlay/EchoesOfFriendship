@@ -11,6 +11,7 @@ public class FrameController : MonoBehaviour
     [SerializeField] PlayerInput _input;
     InputAction _action;
 
+    AudioSource _audioSource;
 
     float _leftBorder;
     float _rightBorder;
@@ -25,6 +26,7 @@ public class FrameController : MonoBehaviour
     public void SetActive(bool active) 
     {  
         _isActive = active;
+        if (!active) _audioSource.Stop();
 
         transform.position = new Vector3(_leftBorder, transform.position.y, transform.position.z);
     }
@@ -39,6 +41,8 @@ public class FrameController : MonoBehaviour
             enabled = false;
         }
         BoxCollider runeBox = GetComponent<BoxCollider>();
+
+        _audioSource = GetComponent<AudioSource>();
 
         _rightBorder = areaBox.bounds.max.x - runeBox.bounds.extents.x;
         _leftBorder = areaBox.bounds.min.x + runeBox.bounds.extents.x;
@@ -56,6 +60,15 @@ public class FrameController : MonoBehaviour
             Vector3 newPosition = transform.position;
             newPosition.x += inputValue * _speed * Time.deltaTime;
             newPosition.x = Mathf.Clamp(newPosition.x, _leftBorder, _rightBorder);
+
+            if (newPosition != transform.position)
+            {
+                if (!_audioSource.isPlaying) _audioSource.Play();
+            }
+            else
+            {
+                if (_audioSource.isPlaying) _audioSource.Stop();
+            }
             transform.position = newPosition;
         }
     }

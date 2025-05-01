@@ -6,7 +6,7 @@ public class WalkingState : PlayerState
 {
     public override void EnterState(PlayerStateManager manager)
     {
-        
+        manager.Sound.SetWalking(true);
     }
 
     public override void UpdateState(PlayerStateManager manager)
@@ -14,12 +14,14 @@ public class WalkingState : PlayerState
 
         if (manager.Input.Move == Vector2.zero)
         {
+            manager.Sound.SetWalking(false);
             manager.SwitchState(manager.Idle);
             return;
         }
 
         if (manager.Movement.IsGrounded && manager.Input.Jump)
         {
+            manager.Sound.SetWalking(false);
             manager.SwitchState(manager.Jumping);
             return;
         }
